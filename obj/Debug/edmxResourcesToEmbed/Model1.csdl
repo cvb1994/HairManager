@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HairManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="anh">
+    <Key>
+      <PropertyRef Name="imageID" />
+    </Key>
+    <Property Name="imageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ServiceID" Type="Int32" />
+    <NavigationProperty Name="dichvu" Relationship="Self.FK__anh__ServiceID__0C85DE4D" FromRole="anh" ToRole="dichvu" />
+  </EntityType>
+  <EntityType Name="dichvu">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceNane" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServicePrice" Type="Int32" Nullable="false" />
+    <Property Name="ServiceDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PriceDiscount" Type="Int32" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="employeeID" Type="Int32" />
+    <NavigationProperty Name="anhs" Relationship="Self.FK__anh__ServiceID__0C85DE4D" FromRole="dichvu" ToRole="anh" />
+    <NavigationProperty Name="khachhang" Relationship="Self.FK__dichvu__Customer__08B54D69" FromRole="dichvu" ToRole="khachhang" />
+    <NavigationProperty Name="nhanvien" Relationship="Self.FK__dichvu__employee__09A971A2" FromRole="dichvu" ToRole="nhanvien" />
+  </EntityType>
+  <EntityType Name="khachhang">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerAge" Type="Int32" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerGender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerLevel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustomerCosted" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dichvus" Relationship="Self.FK__dichvu__Customer__08B54D69" FromRole="khachhang" ToRole="dichvu" />
+  </EntityType>
+  <EntityType Name="nguoidung">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userRole" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="employeeID" />
+    </Key>
+    <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="base_salary" Type="Int32" Nullable="false" />
+    <Property Name="kpi" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dichvus" Relationship="Self.FK__dichvu__employee__09A971A2" FromRole="nhanvien" ToRole="dichvu" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__anh__ServiceID__0C85DE4D">
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="0..1" />
+    <End Role="anh" Type="Self.anh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dichvu">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="anh">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dichvu__Customer__08B54D69">
+    <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachhang">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="dichvu">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dichvu__employee__09A971A2">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="employeeID" />
+      </Principal>
+      <Dependent Role="dichvu">
+        <PropertyRef Name="employeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HairManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="anhs" EntityType="Self.anh" />
+    <EntitySet Name="dichvus" EntityType="Self.dichvu" />
+    <EntitySet Name="khachhangs" EntityType="Self.khachhang" />
+    <EntitySet Name="nguoidungs" EntityType="Self.nguoidung" />
+    <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__anh__ServiceID__0C85DE4D" Association="Self.FK__anh__ServiceID__0C85DE4D">
+      <End Role="dichvu" EntitySet="dichvus" />
+      <End Role="anh" EntitySet="anhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dichvu__Customer__08B54D69" Association="Self.FK__dichvu__Customer__08B54D69">
+      <End Role="khachhang" EntitySet="khachhangs" />
+      <End Role="dichvu" EntitySet="dichvus" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dichvu__employee__09A971A2" Association="Self.FK__dichvu__employee__09A971A2">
+      <End Role="nhanvien" EntitySet="nhanviens" />
+      <End Role="dichvu" EntitySet="dichvus" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HairManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="anh">
+    <Key>
+      <PropertyRef Name="imageID" />
+    </Key>
+    <Property Name="imageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="path" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ServiceID" Type="int" />
+  </EntityType>
+  <EntityType Name="dichvu">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceNane" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ServicePrice" Type="int" Nullable="false" />
+    <Property Name="ServiceDescribe" Type="ntext" />
+    <Property Name="PriceDiscount" Type="int" Nullable="false" />
+    <Property Name="dateCreated" Type="date" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="employeeID" Type="int" />
+  </EntityType>
+  <EntityType Name="khachhang">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CustomerAge" Type="int" />
+    <Property Name="CustomerPhone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="CustomerGender" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="CustomerLevel" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="dateCreated" Type="date" Nullable="false" />
+    <Property Name="CustomerCosted" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="nguoidung">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPass" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userRole" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="employeeID" />
+    </Key>
+    <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="base_salary" Type="int" Nullable="false" />
+    <Property Name="kpi" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__anh__ServiceID__0C85DE4D">
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="0..1" />
+    <End Role="anh" Type="Self.anh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dichvu">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="anh">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dichvu__Customer__08B54D69">
+    <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachhang">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="dichvu">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dichvu__employee__09A971A2">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+    <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="employeeID" />
+      </Principal>
+      <Dependent Role="dichvu">
+        <PropertyRef Name="employeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HairManagerModelStoreContainer">
+    <EntitySet Name="anh" EntityType="Self.anh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dichvu" EntityType="Self.dichvu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__anh__ServiceID__0C85DE4D" Association="Self.FK__anh__ServiceID__0C85DE4D">
+      <End Role="dichvu" EntitySet="dichvu" />
+      <End Role="anh" EntitySet="anh" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dichvu__Customer__08B54D69" Association="Self.FK__dichvu__Customer__08B54D69">
+      <End Role="khachhang" EntitySet="khachhang" />
+      <End Role="dichvu" EntitySet="dichvu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dichvu__employee__09A971A2" Association="Self.FK__dichvu__employee__09A971A2">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="dichvu" EntitySet="dichvu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

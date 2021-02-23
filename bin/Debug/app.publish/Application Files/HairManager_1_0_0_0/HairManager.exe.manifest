@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="HairManager.exe" version="1.0.0.0" publicKeyToken="3d8bc2615db152be" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="HairManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="HairManager.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.dll" size="5225168">
+      <assemblyIdentity name="EntityFramework" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nCD7KthqdgsMauvZMByQCYkdAq4UcgqTkmwLU1uK0Js=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="622288">
+      <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>4OEmw7inupUB0D+Z1Upcu9F0vOy2FwCYq0zBIZ8n+TM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HairManager.exe" size="114600">
+      <assemblyIdentity name="HairManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>XMUnom6GPv0I5P3WNzFOaS98wLEaJuSoy/XlCl2xQM8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="HairManager.exe.config" size="1309">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>x4pP16a2+IKngMlwqBxja4HG+dJNxTICi92HWQlHL/g=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Model1.Context.tt" size="22930">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>iH6jRm/ArXOO/wVogKb8ZOaRJ6DvCC6vOswudwQkDnQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Model1.tt" size="25275">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>CabSpKm6yYNT6twBZzKHKM3v3aBYMgNzK0uSDYpHoWw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=ADMIN\Admin" issuerKeyHash="f1b2a4f761c778928c36251fdd7637a4960567b2" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>LGF7DLIutIhGFRbIkI6+/ljgGNUaXUdlkfTvjHOa7OQ=</DigestValue></Reference></SignedInfo><SignatureValue>Pl6SHwus8bhxyqQRy9R+841oNtd7oblUNEhOmVZUO4hZ91I1M2g8AvMX58azOaXyevISu58TRaIzAch3C5SSzkEMcB3XYWVWNgkzMzt+L+SBik9KMSJPoJ3b0uyBLgfDP7HOEBJnrgCtWTnFK8Rak4W+NNbYsFd68Qf3AfaoMUc=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>mFHgj6cfuRLkXN2etjrlMa6SrysM2mhttPWr4//MPW1itWvYP09XVrNmIr2gNKO7vLTdj7XJFNSEbA3/dgrPhF/0JNtb3wZsT60MtnnpRc+gL56C8PfbCVxGVYdZuaAX82qvAJLBDVM2gRu/ePi0KbN/gFnpjhsJZeGNn38EkDU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="e4ec9a738ceff49165475d1ad518e058febe8e90c816154688b42eb20c7b612c" Description="" Url=""><as:assemblyIdentity name="HairManager.exe" version="1.0.0.0" publicKeyToken="3d8bc2615db152be" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=ADMIN\Admin</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>tHE3gQJZbPfIChrM0GVAh1PDGlTz+VAbf0XUDF4qSnI=</DigestValue></Reference></SignedInfo><SignatureValue>QXNnkwX0EwLBmH9A+RoxtTfi1NriMeBGh3n4+1LB0orCjz39SYa7n/gDGyCK4HPiXJ42VUtCwJuD8Sw8i4zDlhg8eOWpNhLRHNez/WaFGYEeBX4cMr8HJNu5T6NAXNjZNr3dy50IY2l+olLY4Df23nhIp6py8+32byZNI8pSg7c=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>mFHgj6cfuRLkXN2etjrlMa6SrysM2mhttPWr4//MPW1itWvYP09XVrNmIr2gNKO7vLTdj7XJFNSEbA3/dgrPhF/0JNtb3wZsT60MtnnpRc+gL56C8PfbCVxGVYdZuaAX82qvAJLBDVM2gRu/ePi0KbN/gFnpjhsJZeGNn38EkDU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBxTCCAS6gAwIBAgIQSs1B3SnXYYNPw2EivGdZBTANBgkqhkiG9w0BAQsFADAhMR8wHQYDVQQDHhYAQQBEAE0ASQBOAFwAQQBkAG0AaQBuMB4XDTIxMDEyMzA0MTMxMFoXDTIyMDEyMzEwMTMxMFowITEfMB0GA1UEAx4WAEEARABNAEkATgBcAEEAZABtAGkAbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAmFHgj6cfuRLkXN2etjrlMa6SrysM2mhttPWr4//MPW1itWvYP09XVrNmIr2gNKO7vLTdj7XJFNSEbA3/dgrPhF/0JNtb3wZsT60MtnnpRc+gL56C8PfbCVxGVYdZuaAX82qvAJLBDVM2gRu/ePi0KbN/gFnpjhsJZeGNn38EkDUCAwEAATANBgkqhkiG9w0BAQsFAAOBgQBgOmR8I6qy3EPFWDf7cyR8sgd9rU+i/f13fIG0Hci0pjlP37UeUElKpUJDAHUFRE/v00Nh3Ja5ztrZjVmQk2ks2fYWFsZ0y5O7+6lX9li8SnJD/MK11JkMmUpQyk4ZsxDpiO7hohfGQwP8wzByoIWawm7MrbVUAg73GzeuRvekbg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

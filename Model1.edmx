@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HairManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="anh">
+          <Key>
+            <PropertyRef Name="imageID" />
+          </Key>
+          <Property Name="imageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ServiceID" Type="int" />
+        </EntityType>
+        <EntityType Name="dichvu">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceNane" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ServicePrice" Type="int" Nullable="false" />
+          <Property Name="ServiceDescribe" Type="ntext" />
+          <Property Name="PriceDiscount" Type="int" Nullable="false" />
+          <Property Name="dateCreated" Type="date" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="employeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomerAge" Type="int" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustomerGender" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CustomerLevel" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="dateCreated" Type="date" Nullable="false" />
+          <Property Name="CustomerCosted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userRole" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="base_salary" Type="int" Nullable="false" />
+          <Property Name="kpi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__anh__ServiceID__0C85DE4D">
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="0..1" />
+          <End Role="anh" Type="Self.anh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dichvu">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="anh">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dichvu__Customer__08B54D69">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="dichvu">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dichvu__employee__09A971A2">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="dichvu">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HairManagerModelStoreContainer">
+          <EntitySet Name="anh" EntityType="Self.anh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dichvu" EntityType="Self.dichvu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__anh__ServiceID__0C85DE4D" Association="Self.FK__anh__ServiceID__0C85DE4D">
+            <End Role="dichvu" EntitySet="dichvu" />
+            <End Role="anh" EntitySet="anh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dichvu__Customer__08B54D69" Association="Self.FK__dichvu__Customer__08B54D69">
+            <End Role="khachhang" EntitySet="khachhang" />
+            <End Role="dichvu" EntitySet="dichvu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dichvu__employee__09A971A2" Association="Self.FK__dichvu__employee__09A971A2">
+            <End Role="nhanvien" EntitySet="nhanvien" />
+            <End Role="dichvu" EntitySet="dichvu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HairManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="anh">
+          <Key>
+            <PropertyRef Name="imageID" />
+          </Key>
+          <Property Name="imageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" />
+          <NavigationProperty Name="dichvu" Relationship="Self.FK__anh__ServiceID__0C85DE4D" FromRole="anh" ToRole="dichvu" />
+        </EntityType>
+        <EntityType Name="dichvu">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceNane" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServicePrice" Type="Int32" Nullable="false" />
+          <Property Name="ServiceDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PriceDiscount" Type="Int32" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="employeeID" Type="Int32" />
+          <NavigationProperty Name="anhs" Relationship="Self.FK__anh__ServiceID__0C85DE4D" FromRole="dichvu" ToRole="anh" />
+          <NavigationProperty Name="khachhang" Relationship="Self.FK__dichvu__Customer__08B54D69" FromRole="dichvu" ToRole="khachhang" />
+          <NavigationProperty Name="nhanvien" Relationship="Self.FK__dichvu__employee__09A971A2" FromRole="dichvu" ToRole="nhanvien" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerAge" Type="Int32" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerGender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerLevel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustomerCosted" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dichvus" Relationship="Self.FK__dichvu__Customer__08B54D69" FromRole="khachhang" ToRole="dichvu" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userRole" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="base_salary" Type="Int32" Nullable="false" />
+          <Property Name="kpi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dichvus" Relationship="Self.FK__dichvu__employee__09A971A2" FromRole="nhanvien" ToRole="dichvu" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__anh__ServiceID__0C85DE4D">
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="0..1" />
+          <End Role="anh" Type="Self.anh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dichvu">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="anh">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dichvu__Customer__08B54D69">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="dichvu">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dichvu__employee__09A971A2">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="dichvu" Type="Self.dichvu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="dichvu">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HairManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="anhs" EntityType="Self.anh" />
+          <EntitySet Name="dichvus" EntityType="Self.dichvu" />
+          <EntitySet Name="khachhangs" EntityType="Self.khachhang" />
+          <EntitySet Name="nguoidungs" EntityType="Self.nguoidung" />
+          <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK__anh__ServiceID__0C85DE4D" Association="Self.FK__anh__ServiceID__0C85DE4D">
+            <End Role="dichvu" EntitySet="dichvus" />
+            <End Role="anh" EntitySet="anhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dichvu__Customer__08B54D69" Association="Self.FK__dichvu__Customer__08B54D69">
+            <End Role="khachhang" EntitySet="khachhangs" />
+            <End Role="dichvu" EntitySet="dichvus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dichvu__employee__09A971A2" Association="Self.FK__dichvu__employee__09A971A2">
+            <End Role="nhanvien" EntitySet="nhanviens" />
+            <End Role="dichvu" EntitySet="dichvus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HairManagerModelStoreContainer" CdmEntityContainer="HairManagerEntities">
+          <EntitySetMapping Name="anhs">
+            <EntityTypeMapping TypeName="HairManagerModel.anh">
+              <MappingFragment StoreEntitySet="anh">
+                <ScalarProperty Name="imageID" ColumnName="imageID" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dichvus">
+            <EntityTypeMapping TypeName="HairManagerModel.dichvu">
+              <MappingFragment StoreEntitySet="dichvu">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceNane" ColumnName="ServiceNane" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+                <ScalarProperty Name="ServiceDescribe" ColumnName="ServiceDescribe" />
+                <ScalarProperty Name="PriceDiscount" ColumnName="PriceDiscount" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khachhangs">
+            <EntityTypeMapping TypeName="HairManagerModel.khachhang">
+              <MappingFragment StoreEntitySet="khachhang">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAge" ColumnName="CustomerAge" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerGender" ColumnName="CustomerGender" />
+                <ScalarProperty Name="CustomerLevel" ColumnName="CustomerLevel" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="CustomerCosted" ColumnName="CustomerCosted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoidungs">
+            <EntityTypeMapping TypeName="HairManagerModel.nguoidung">
+              <MappingFragment StoreEntitySet="nguoidung">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userPass" ColumnName="userPass" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhanviens">
+            <EntityTypeMapping TypeName="HairManagerModel.nhanvien">
+              <MappingFragment StoreEntitySet="nhanvien">
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+                <ScalarProperty Name="base_salary" ColumnName="base_salary" />
+                <ScalarProperty Name="kpi" ColumnName="kpi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HairManagerModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
